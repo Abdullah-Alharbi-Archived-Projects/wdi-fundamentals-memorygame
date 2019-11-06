@@ -1,6 +1,10 @@
 const cards = [];
+const EXP = [10, 20, 15, 13, 17];
+const scoreElement = document.getElementById("score");
+
 let cardsInPlay = [];
 let items = [];
+let score = 0;
 
 let gameStatus = true; // game is started once the user visited the site
 

@@ -27,11 +27,13 @@ function addCard(rank, suit, cardImage) {
 }
 
 function checkForMatch() {
-  let result = "";
+  let result = ["", false];
   if (cardsInPlay[0] === cardsInPlay[1]) {
-    result = "You found a match!";
+    result[0] = "You found a match!";
+    result[1] = true;
   } else {
-    result = "Sorry, try again!";
+    result[0] = "Sorry, try again!";
+    result[1] = false;
   }
 
   return result;
@@ -58,18 +60,36 @@ function reset() {
 }
 
 function flipCard() {
-  const cardId = this.getAttribute("data-id");
-
   if (!gameStatus) return false; // check if game finisihed
-  // note: you may need to remove all the listeners after the game finished for memory efficiency
+  // note: you may need to remove all the listeners after the game finished for code efficiency
+
+  const cardId = this.getAttribute("data-id");
 
   this.setAttribute("src", cards[cardId].cardImage);
   cardsInPlay.push(cards[cardId].rank);
 
   if (cardsInPlay.length === 2) {
-    const result = checkForMatch();
-    document.getElementById("result").innerText = result;
+    const [message, updateScore] = checkForMatch();
+
+    document.getElementById("result").innerText = message;
 
     gameStatus = false;
+
+    if (updateScore) trackScore();
   }
+}
+
+function trackScore() {
+  // get current score
+  const currentScore = parseInt(scoreElement.textContent);
+
+  // add exp to the current score
+  const newScore = currentScore + EXP[getExp()];
+
+  // update score element
+  scoreElement.innerText = newScore;
+}
+
+function getExp() {
+  return Math.floor(Math.random() * (EXP.length - 1)); // select random number from the EXP array
 }
