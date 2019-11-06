@@ -1,3 +1,8 @@
+// loop over cards array
+// and create new image element
+// attach click listener on each image
+// appened each image to game-board
+// push image element to items array
 function createBoard() {
   for (let i = 0; i < cards.length; i++) {
     const card = cards[i];
@@ -12,6 +17,7 @@ function createBoard() {
   }
 }
 
+// create new card object
 function addCard(rank, suit, cardImage) {
   cards.push({
     rank,
@@ -31,6 +37,7 @@ function checkForMatch() {
   return result;
 }
 
+// reset the game
 function reset() {
   // clear selected cards
   cardsInPlay = [];
@@ -38,6 +45,8 @@ function reset() {
   items.forEach(i => i.remove());
   // clear items
   items = [];
+
+  // Bouns: randomize cards, add more cards
 
   // clear text
   document.getElementById("result").innerText = "";
@@ -51,7 +60,8 @@ function reset() {
 function flipCard() {
   const cardId = this.getAttribute("data-id");
 
-  if (!gameStatus) return false;
+  if (!gameStatus) return false; // check if game finisihed
+  // note: you may need to remove all the listeners after the game finished for memory efficiency
 
   this.setAttribute("src", cards[cardId].cardImage);
   cardsInPlay.push(cards[cardId].rank);
