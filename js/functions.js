@@ -22,7 +22,8 @@ function addCard(rank, suit, cardImage) {
   cards.push({
     rank,
     suit,
-    cardImage
+    cardImage,
+    flipped: false
   });
 }
 
@@ -56,6 +57,9 @@ function reset() {
   // set game status to start
   gameStatus = true;
 
+  // reset fliped state
+  cards.map(c => (c.flipped = false));
+
   createBoard();
 }
 
@@ -65,8 +69,12 @@ function flipCard() {
 
   const cardId = this.getAttribute("data-id");
 
+  if (cards[cardId].flipped) return false; // we don't want the user to flip card that's already flipped 😂
+
   this.setAttribute("src", cards[cardId].cardImage);
   cardsInPlay.push(cards[cardId].rank);
+
+  cards[cardId].flipped = true;
 
   if (cardsInPlay.length === 2) {
     const [message, updateScore] = checkForMatch();
