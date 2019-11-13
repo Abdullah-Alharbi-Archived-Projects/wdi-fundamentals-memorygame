@@ -17,6 +17,7 @@
     </header>
     <nav>
       <a href="#">Instructions Game</a>
+      <a href="#" id="reset">Reset</a>
     </nav>
     <main>
       <h2>Instructions</h2>
@@ -32,14 +33,15 @@
         >
       </p>
 
-      <div>
-        <img src="images/back.png" alt="Queen of Diamonds" />
-        <img src="images/back.png" alt="Queen of Hearts" />
-        <img src="images/back.png" alt="King of Diamonds" />
-        <img src="images/back.png" alt="King of Hearts" />
-      </div>
+      <!-- <button id="reset"></button> -->
+      <h2>Score: <span id="score">0</span></h2>
+      <h3 id="result"></h3>
+      <div class="board clearfix" id="game-board"></div>
     </main>
+
     <footer>Created with &hearts; by <span class="name">GA</span></footer>
+
+    <script src="js/functions.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
