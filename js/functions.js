@@ -89,12 +89,13 @@ function trackScore() {
   const currentScore = parseInt(scoreElement.textContent);
 
   // add exp to the current score
-  const newScore = currentScore + EXP[getExp()];
+  const newScore = currentScore + getExp();
 
   // update score element
   scoreElement.innerText = newScore;
 }
 
 function getExp() {
-  return Math.floor(Math.random() * (EXP.length - 1)); // select random number from the EXP array
+  const randomIndex = Math.floor(Math.random() * (EXP.length - 1));;
+  return  EXP[randomIndex]; // select random number from the EXP array
 }
