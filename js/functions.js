@@ -28,13 +28,10 @@ function addCard(rank, suit, cardImage) {
 }
 
 function checkForMatch() {
-  let result = ["", false];
+  let result = ["Sorry, try again!", false];
   if (cardsInPlay[0] === cardsInPlay[1]) {
     result[0] = "You found a match!";
     result[1] = true;
-  } else {
-    result[0] = "Sorry, try again!";
-    result[1] = false;
   }
 
   return result;
